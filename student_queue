@@ -1,58 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
-int find_student(int student_now,int student_queue[]){
- return student_now;
+int find_student(int student_now,int student_number, int student_queue[]){
+
+	int i;
+	for(i = 0 ;i < student_number; i++)
+		if(student_queue[i] == student_now)
+		{
+			student_now = i+1;
+			break;	  
+		}
+	return student_now;
 }
 int main(void){
-    int student_numbre;
-    int student_now;
-    int student_tempo;
-    int student_queue[10010];
-    int move_time;
-    int move_sit;
-    int i;
-    scanf("%d",&student_numbre);
+	int student_numbre;
+	int student_now;
+	int student_tempo;
+	int student_queue[10010];
+	int move_time;
+	int move_sit;
+	int i,j;
+	scanf("%d",&student_numbre);
 
-    for(i = 0; i < student_numbre; i++)
-          student_queue[i] = i + 1;
+	for(i = 0; i < student_numbre; i++)
+		student_queue[i] = i + 1;
 
-    scanf("%d",&move_time);
+	scanf("%d",&move_time);
 
 
+	for(i = 0; i < move_time; i++)
+	{
+		scanf("%d%d",&student_now,&move_sit);
+		student_tempo = student_now;
+		student_now = find_student(student_now,student_numbre,student_queue);
+		if(move_sit >= 0)
+		{
+			for(j = 0; j < move_sit; j++ )
+			{
+				student_queue[student_now - 1] = student_queue[student_now ];
+				student_now ++;
+			}
+			student_queue[student_now - 1] = student_tempo;
+		}
+		else
+		{
+			move_sit = -move_sit;
+			for(j = 0; j < move_sit; j++ )
+			{
+				student_queue[student_now - 1] = student_queue[student_now - 2 ];
+				student_now --;
+			}
+			student_queue[student_now - 1] = student_tempo;
+		}
+	}
 
-    for(i = 0; i < move_time; i++)
-    {
-        scanf("%d%d",&student_now,&move_sit);
-         student_tempo = student_now;
+	for(i = 0; i < student_numbre; i++)
+		printf("%d ",student_queue[i]);
 
-            if(move_sit >= 0)
-          {
-             student_now = find_student(student_now,student_queue);
-            for(i = 0; i < move_sit; i++ )
-            {
-                student_queue[student_now - 1] = student_queue[student_now ];
-                student_now ++;
-            }
-            student_queue[student_now - 1] = student_tempo;
-          }
-        else
-        {
-            student_now = find_student(student_now,student_queue);
-            move_sit = -move_sit;
-            for(i = 0; i < move_sit; i++ )
-            {
-                student_queue[student_now - 1] = student_queue[student_now - 2 ];
-                student_now --;
-            }
-            student_queue[student_now - 1] = student_tempo;
-        }
-    }
-
- for(i = 0; i < student_numbre; i++)
-          printf("%d ",student_queue[i]);
-
-    return 0;
+	return 0;
 }
+
 /**问题描述
 　　体育老师小明要将自己班上的学生按顺序排队。他首先让学生按学号从小到大的顺序排成一排，学号小的排在前面，然后进行多次调整。一次调整小明可能让一位同学出队，向前或者向后移动一段距离后再插入队列。
 　　例如，下面给出了一组移动的例子，例子中学生的人数为8人。
