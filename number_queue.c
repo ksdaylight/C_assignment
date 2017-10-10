@@ -33,25 +33,31 @@ for(i = 0; i < 1001 ;i ++)
 
 time = j ;
 
-for( i = 0 ; i < time; i++)
+for( i = 0 ; i < time - 1; i++)
 {
+    printf("^1\n");
     answer[time][1] = answer[i][1];
     answer[time][0] = i;
     for (j = i +1; j < time ; j ++)
-    {
+    {printf("^2\n");
         if(answer[j][1] > answer[time][1] )
         {
             answer[time][1] = answer[j][1];
             answer[time][0] = j;
         }
     }
+    if(i != answer[time][0] )
+  {
+    printf(" %d <-> %d\n",i,answer[time][1]);///
    number[0] = answer[time][0];
    number[1] = answer[time][1];
    answer[time][0] = answer[answer[time][0]][0];
    answer[time][1] = answer[time][1];
    answer[answer[time][0]][0] = number[0];
    answer[time][1] = number[1];
-
+  }
+  for (k= 0 ; k < time ; k++ )///
+    printf("%d %d\n",answer[k][0],answer[k][1]);
 }
 
 
@@ -61,6 +67,10 @@ for (i = 0 ; i < time ; i++ )
 
 return 0;
 }
+
+
+
+
 
 
 /*
