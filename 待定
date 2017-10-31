@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+struct node{
+    int number;
+    struct node* next;
+};
+typedef struct node* node_p;
+int test_line(node_p head,int number)
+{
+    node_p p2;
+
+	p2 = head;
+	while(p2 != NULL)
+	{
+		if(number == p2->number)
+		return 0;
+		p2 = p2->next;
+
+	}
+	return 1;
+}
+node_p creat_line(node_p head)
+{
+    node_p p1,p2;
+    int number;
+    p2 = p1 = head;
+    scanf("%d",&number);
+        while(number != -1)
+			{
+			    p1 =  (node_p)malloc(sizeof(struct node));
+		        p1->number = number;
+				if(p2 == NULL)
+                    head = p1;
+				else
+                    p2->next = p1;
+				p2 = p1;
+                p1->next = NULL;
+				scanf("%d",&number);
+				if(test_line(head,number) == 0)
+                   scanf("%d",&number);
+			}
+    return head;
+}
+void print_line(node_p head)
+{
+	node_p p1;
+
+	p1 = head;
+	while(p1 != NULL)
+	{
+		printf("%d ",p1->number);
+		p1 = p1->next;
+
+	}
+	printf("\n");
+}
+node_p intersection(node_p a,node_p b,node_p c)
+{
+    node_p pa1,pb1;
+
+	pa1 = a;
+	pb1 = b;
+	while((pa1 != NULL)&&(pb1 != NULL))
+	{
+		if()///+++++++++++++++++++++++++++++++
+		pa1 = pa1->next;
+		pb1 = pb1->next;
+	}
+    
+    
+    
+}
+int main(void){
+node_p a,b,c,d,e,f,g;
+a = b = c = d = e = f = g = NULL;
+a = creat_line(a);
+b = creat_line(b);
+e = creat_line(e);
+c = intersection(a,b,c)///(2);
+print_line(c);
+c = NULL;
+
+///print_line(a);
+
+
+return 0;
+}
+/**【实验目的】掌握用计算机求集合的交、并、差和补运算的方法。
+【实验内容】编程实现集合的交、并、差和补运算。
+【实验原理和方法】
+（1）用数组A，B，C，E表示集合。输入数组A，B，E（全集），输入数据时要求检查数据是否重复（集合中的数据要求不重复），要求集合A，B是集合E的子集。
+++++以下每一个运算都要求先将集合C置成空集。++++
+（2）二个集合的交运算：把数组A中元素逐一与数组B中的元素进行比较，将相同的元素放在数组C中，数组C便是集合A和集合B的交。
+ （3）二个集合的并运算：把数组A中各个元素先保存在数组D中。将数组D中的元素逐一与数组B中的元素进行比较，把不相同的元素添加到数组D中，数组D便是集合A和集合B的并。
+（4）二个集合的差运算：把数组A中各个元素先保存在数组F中。将数组F中的元素逐一与数组B中的元素进行比较，把相同的元素从数组F中删除，数组F便是集合A和集合B的差A-B。
+（5）集合的补运算：将数组E中的元素逐一与数组A中的元素进行比较，把不相同的元素保存到数组G中，数组G便是集合A关于集合E的补集。
+【应用（选作）二选一】
+一、	课本例题3.10编程实现
+二、编写一个简单的实验设备管理系统，设备数据包括设备号（同一批次采购同一设备用同一设备号），设备名称，设备属性（归属哪个专业，举例如下： 通用计算机（所有专业）、LTE通信设备（通信专业）、口袋盒子（嵌入式专业）、手机终端实验箱（通信专业）、云存储设备（集成专业）、路由器（通信专业、集成专业）、交换机（通信专业、集成专业）等等）、设备购入时间、设备状态（完好、故障）、设备数量。处理一下内容：
+1、输入10件设备数据；
+2、统计各专业设备数量，并输出。
+3、统计指定时间设备的故障率，并输出全部故障设备信息。
+注：故障率计算方式为（每个设备设置一个健康度，一个阈值，使用一次扣一定的损耗值，扣到低于阈值记为故障。 使用情况可以自行手动定义也可设置一个课表；有能力的同学将损耗值设置为服从泊松分布，并对设备可能出现故障做到预测，并能提醒管理员）
+
+ 
+
+*/
