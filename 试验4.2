@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <malloc.h>
+int *ji(int *n,int size,int m ){
+    int *ans;
+    int i,j,k;
+    ans = (int *)malloc(size * size * sizeof(int));
+    for(i = 0;i < size ; i ++ )
+    {
+        for(j = 0; j < size; j++)
+        {
+            
+        }
+
+    }
+    
+
+return n;
+}
+int main(void)
+{
+    int size;
+    int *n;
+    int i,j,k,m;
+    scanf("%d",&size);
+    n = (int *)malloc(size * size * sizeof(int));
+    for(i = 0;i < size ; i ++ )
+    {
+        for(j = 0; j < size; j++)
+        scanf("%d",n + i * size + j);
+
+    }
+    scanf("%d",&m);
+    n = ji(n,size,m);
+    
+        for(i = 0;i < size ; i ++ )
+    {
+        for(j = 0; j < size; j++)
+        printf("%d ",*(n + i * size + j));
+        printf("\n");
+
+    }
+    return 0;
+}
