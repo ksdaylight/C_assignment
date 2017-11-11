@@ -23,7 +23,7 @@ int dui(int *n,int size)
     return 1;
 }
 int chuan(int *n,int size){/// haiyou mei you wei 1?
-    int i,j,k,l;
+    int i,j,k;
     for(i = 0;i < size ; i ++ )
     {
         if (i == j)
@@ -49,25 +49,23 @@ int main(void)
     int size;
     int *n;
     int i,j,k;
+    printf("请输入集合A的元素个数:\n");
     scanf("%d",&size);
     n = (int *)malloc(size * size * sizeof(int));
+    printf("请输入关系R对应的矩阵:\n");
     for(i = 0;i < size ; i ++ )
     {
         for(j = 0; j < size; j++)
         scanf("%d",n + i * size + j);
 
     }
-
-    for(i = 0;i < size ; i ++ )
-    {
-        for(j = 0; j < size; j++)
-        printf("%d ",*(n + i * size + j));
-        printf("\n");
-
-    }
-printf("zi-%d,dui-%d,chuan-%d",zi(n,size),dui(n,size),chuan(n,size));
+	if(zi(n,size)&&dui(n,size)&&chuan(n,size))
+		printf("二元关系为等价关系\n");
+	else
+		printf("二元关系不为等价关系\n");
     return 0;
 }
+
 /**实验四 二元关系及其性质	
 【实验目的】掌握二元关系在计算机上的表示方法，并掌握如果判定关系的性质。
 【实验内容】 编程判断一个二元关系是否为等价关系，如果是，求其商集。
