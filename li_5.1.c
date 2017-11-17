@@ -1,27 +1,61 @@
  #include <stdio.h>
 #include <malloc.h>
-int *zi(int *n,int size){
+int *zi(int *p,int size){
     int i;
+    int l,m;
+    int *n;
+    n = (int *)malloc(size * size * sizeof(int));
+    for(l = 0;l < size ; l ++ )
+        {
+            for(m= 0; m< size; m++)
+            *(n + l * size + m) = *(p+ l * size + m);
+        }
     for(i = 0; i < size; i ++)
         *(n + i * size + i) = 1;
-    return n;
- /*           return 0;
-    return 1;*/
+    for(l = 0;l < size ; l ++ )
+        {
+            for(m= 0; m< size; m++)
+            printf("%d ",*(n + l * size + m));
+            printf("\n");
+        }
+    return p;
+
 }
-int *dui(int *n,int size)
+int *dui(int *p,int size)
 {
     int i,j;
+    int l,m;
+    int *n;
+    n = (int *)malloc(size * size * sizeof(int));
+    for(l = 0;l < size ; l ++ )
+        {
+            for(m= 0; m< size; m++)
+            *(n + l * size + m) = *(p+ l * size + m);
+        }
      for(i = 0;i < size ; i ++ )
     {
         for(j = 0; j < size; j++)
         if(*(n + i * size + j) == 1)
            *(n + j * size + i) = 1;
     }
-    return n;
+    for(l = 0;l < size ; l ++ )
+        {
+            for(m= 0; m< size; m++)
+            printf("%d ",*(n + l * size + m));
+            printf("\n");
+        }
+    return p;
 }
-int *chuan(int *n,int size){/// haiyou mei you wei 1?
+int *chuan(int *p,int size){/// haiyou mei you wei 1?
     int i,j,k;
-//    int l,m;
+    int l,m;
+    int *n;
+    n = (int *)malloc(size * size * sizeof(int));
+    for(l = 0;l < size ; l ++ )
+        {
+            for(m= 0; m< size; m++)
+            *(n + l * size + m) = *(p+ l * size + m);
+        }
     for(j = 0;j < size ; j ++ )
     {
         for(i= 0; i< size; i++)
@@ -36,16 +70,16 @@ int *chuan(int *n,int size){/// haiyou mei you wei 1?
                 }
             }
         }
- /*       printf("%d\n",j);///////////
-        for(l = 0;l < size ; l ++ )
+
+
+    }
+     for(l = 0;l < size ; l ++ )
         {
             for(m= 0; m< size; m++)
             printf("%d ",*(n + l * size + m));
             printf("\n");
         }
-   */
-    }
-    return n;
+    return p;
 }
 
 int main(void)
@@ -63,17 +97,16 @@ int main(void)
         scanf("%d",n + i * size + j);
 
     }
-   // n = zi(n,size);
-    //n = dui(n,size);
-    n = chuan(n,size);///改为每个函数自己建立
-    for(i = 0;i < size ; i ++ )
-        {
-            for(j = 0; j < size; j++)
-            printf("%d ",*(n + i * size + j));
-            printf("\n");
-        }
+    printf("自反闭包:\n");
+    n = zi(n,size);
+    printf("对称闭包:\n");
+    n = dui(n,size);
+    printf("传递闭包:\n");
+    n = chuan(n,size);
+
     return 0;
 }
+
 /*实验五 关系闭包运算	
 
 【实验目的】掌握求关系闭包的方法。
